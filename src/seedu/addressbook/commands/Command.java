@@ -48,6 +48,11 @@ public abstract class Command {
         this.addressBook = addressBook;
         this.relevantPersons = relevantPersons;
     }
+    
+    /**
+     * Returns true if the command changes address book data 
+     */
+    abstract public boolean isMutating();
 
     /**
      * Extracts the the target person in the last shown list from the given arguments.
