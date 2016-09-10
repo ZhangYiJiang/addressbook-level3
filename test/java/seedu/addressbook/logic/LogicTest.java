@@ -268,6 +268,7 @@ public class LogicTest {
 
         addressBook.addPerson(p2);
         logic.setLastShownList(lastShownList);
+        saveFile.save(addressBook);
 
         assertCommandBehavior("view 1",
                               Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK,
@@ -324,6 +325,7 @@ public class LogicTest {
 
         addressBook.addPerson(p1);
         logic.setLastShownList(lastShownList);
+        saveFile.save(addressBook);
 
         assertCommandBehavior("viewall 2",
                                 Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK,
@@ -547,6 +549,7 @@ public class LogicTest {
             for(Person p: personsToAdd){
                 addressBook.addPerson(p);
             }
+            saveFile.save(addressBook);
         }
 
         /**
