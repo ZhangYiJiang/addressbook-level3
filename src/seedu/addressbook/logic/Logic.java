@@ -6,7 +6,7 @@ import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.Storage;
-import seedu.addressbook.storage.StorageFile;
+import seedu.addressbook.storage.StorageOperationException;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,8 +24,8 @@ public class Logic {
     /** The list of person shown to the user most recently.  */
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
 
-    public Logic() throws Exception{
-        setStorage(initializeStorage());
+    public Logic(Storage storage) throws StorageOperationException {
+        this.storage = storage;
         setAddressBook(storage.load());
     }
 
@@ -40,14 +40,6 @@ public class Logic {
 
     void setAddressBook(AddressBook addressBook){
         this.addressBook = addressBook;
-    }
-
-    /**
-     * Creates the StorageFile object based on the user specified path (if any) or the default storage path.
-     * @throws StorageFile.InvalidStorageFilePathException if the target file path is incorrect.
-     */
-    private Storage initializeStorage() throws StorageFile.InvalidStorageFilePathException {
-        return new StorageFile();
     }
 
     public String getStorageInstruction() {
