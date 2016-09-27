@@ -1,7 +1,6 @@
 package seedu.addressbook.storage;
 
 import seedu.addressbook.data.AddressBook;
-import seedu.addressbook.storage.StorageFile.StorageOperationException;
 
 /**
  * Represents the storage mechanism for AddressBook objects 
