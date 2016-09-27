@@ -19,5 +19,9 @@ public interface Storage {
      */
     public void save(AddressBook addressBook) throws StorageOperationException;
     
-    public String getPath();
+    /**
+     * Returns instructions for the end user detailing the operation of this storage
+     * mechanism
+     */
+    public String getInstruction();
 }

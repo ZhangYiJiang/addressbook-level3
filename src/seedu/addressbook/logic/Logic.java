@@ -49,8 +49,8 @@ public class Logic {
         return new StorageFile();
     }
 
-    public String getStorageFilePath() {
-        return storage.getPath();
+    public String getStorageInstruction() {
+        return storage.getInstruction();
     }
 
     /**

@@ -8,6 +8,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+
+import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -144,8 +147,7 @@ public class StorageFile implements Storage {
     }
     
     @Override
-    public String getPath() {
-        return path.toString();
+    public String getInstruction() {
+        return String.format(MESSAGE_USING_STORAGE_FILE, path);
     }
-
 }
