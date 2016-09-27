@@ -2,9 +2,7 @@ package seedu.addressbook.logic;
 
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.*;
 import seedu.addressbook.common.Messages;
@@ -12,7 +10,8 @@ import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
-import seedu.addressbook.storage.StorageFile;
+import seedu.addressbook.storage.Storage;
+import seedu.addressbook.storage.StorageOperationException;
 
 import java.util.*;
 
@@ -21,20 +20,37 @@ import static seedu.addressbook.common.Messages.*;
 
 
 public class LogicTest {
-
+    
     /**
-     * See https://github.com/junit-team/junit4/wiki/rules#temporaryfolder-rule
+     * Stub storage class that stores the AddressBook in memory for testing
      */
-    @Rule
-    public TemporaryFolder saveFolder = new TemporaryFolder();
+    class StorageStub implements Storage {
+        AddressBook addressBook;
+        
+        @Override
+        public AddressBook load() throws StorageOperationException {
+            return addressBook;
+        }
 
-    private StorageFile saveFile;
+        @Override
+        public void save(AddressBook addressBook) throws StorageOperationException {
+            this.addressBook = addressBook;
+        }
+
+        @Override
+        public String getInstruction() {
+            return "";
+        }
+        
+    }
+
+    private Storage saveFile;
     private AddressBook addressBook;
     private Logic logic;
 
     @Before
     public void setup() throws Exception {
-        saveFile = new StorageFile(saveFolder.newFile("testSaveFile.txt").getPath());
+        saveFile = new StorageStub();
         addressBook = new AddressBook();
         saveFile.save(addressBook);
         logic = new Logic(saveFile, addressBook);
